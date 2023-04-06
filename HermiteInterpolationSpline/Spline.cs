@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace HermiteInterpolationSpline
 {
@@ -36,6 +37,11 @@ namespace HermiteInterpolationSpline
                throw new ArgumentException("Ошибка при чтении координатых точек.");
             }
 
+            if (_sourceX.Length < 3)
+            {
+               throw new ArgumentException("Недостаточно исходных данных. Для построения сплайна требуется 3 точки. ");
+            }
+
             if (_sourceF == null || _sourceX.Length != _sourceF.Length) 
             { 
                throw new ArgumentException("Ошибка при чтении значений функции в точках."); 
@@ -52,10 +58,16 @@ namespace HermiteInterpolationSpline
             {
                throw new ArgumentException("Ошибка при чтении количества разбиений подобластей сплайна.");
             }
+
+            if (_subareaSplits.Length < 1)
+            {
+               throw new ArgumentException("Количество разбиений области должно быть больше или равным единице.");
+            }
          }
          catch(Exception ex) 
          {
             Console.WriteLine(ex.Message);
+            Process.GetCurrentProcess().Kill();
          }
 
       }

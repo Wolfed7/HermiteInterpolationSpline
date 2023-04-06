@@ -1,6 +1,6 @@
 ﻿using HermiteInterpolationSpline;
 
-const string sourceFunction = "source.txt";
+const string sourceFunction = "input.txt";
 const string splineParams = "params.txt";
 const string splineOutput = "output.txt";
 
